@@ -2,14 +2,17 @@ public class GameEngine
 {
 	public static void main(String[] args)
 	{
-		SudokuBoard game = new SudokuBoard("src/data1.sdk");
-		System.out.println(game.isValid());
-		System.out.println(game.isSolved());
+		SudokuBoard game = new SudokuBoard("data1.sdk");
+		System.out.println("Is valid: " + game.isValid());
+		System.out.println("Is solved: " + game.isSolved());
 		System.out.println(game);
 	}
 }
+
 /*
 # PROGRAM OUTPUT
+Is valid: true
+Is solved: false
  2 | - | - | 1 | - | 5 | - | - | 3
 –––|–––|–––|–––|–––|–––|–––|–––|–––
  - | 5 | 4 | - | - | - | 7 | 1 | -

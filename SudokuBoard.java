@@ -40,7 +40,7 @@ public class SudokuBoard
 
 	public boolean isValid()
 	{
-		return checkCharacter() && checkColumnDuplicate() && checkMiniSquareDuplicate();
+		return checkCharacter() && checkRowDuplicate() && checkColumnDuplicate() && checkMiniSquareDuplicate();
 	}
 
 	private boolean checkCharacter()
@@ -116,16 +116,16 @@ public class SudokuBoard
 		for (int spot = 1; spot <= 9; spot++)
 		{
 			char[][] miniSquare = miniSquare(spot);
+			Set <Character> gridValue = new HashSet <>();
 			for (int r = 0; r < miniSquare.length; r++)
 			{
-				Set <Character> rowValue = new HashSet <>();
 				for (int c = 0; c < miniSquare[r].length; c++)
 				{
-					if (rowValue.contains(miniSquare[r][c]) && miniSquare[r][c] != '-')
+					if (gridValue.contains(miniSquare[r][c]) && miniSquare[r][c] != '-')
 					{
 						return false;
 					}
-					rowValue.add(miniSquare[r][c]);
+					gridValue.add(miniSquare[r][c]);
 				}
 			}
 		}
@@ -134,6 +134,11 @@ public class SudokuBoard
 
 	public boolean isSolved()
 	{
+		if (!isValid())
+		{
+			return false;
+		}
+
 		Map <Character, Integer> boardMap = new HashMap <>();
 		for (int r = 0; r < board.length; r++)
 		{
